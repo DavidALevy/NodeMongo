@@ -1,18 +1,16 @@
-const {MongoClient}= require("mongodb");
-require ("dotenv").config();
+const { MongoClient } = require("mongodb");
+require("dotenv").config();
 
-const client =new MongoClient(process.env.MONGO_URI)
-const connection=async (crudfunc,dataOb)=>{
-    try{
+const client = new MongoClient(process.env.MONGO_URI)
+const connection = async (crudFunc, dataOb,updateObj) => {
+    try {
         await client.connect();
-        console.log("connection")
-        const db= client.db("newTestDb")
-        const collection=db.collection("movies");
-        console.log(await collection.findOne({name:"Spiderman"}))
-        await collection.insertOne({name:"Spiderman"})
+        console.log("connection successful")
+        const collection = client.db("newTestDb").collection("movies");
+        await crudFunc(collection, dataOb,updateObj)
         client.close();
-    }catch(error){
+    } catch (error) {
         console.log(error);
     }
 };
-connection();
+module.exports = connection;

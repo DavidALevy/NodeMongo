@@ -9,7 +9,7 @@ exports.addMovie = async (collection, dataObj) => {
 
 exports.listMovies = async (collection) => {
     try {  
-        console.log("Here is the conplete list of films in this collection:")     
+        console.log("Here is the complete list of films in this collection:")     
         console.log(await collection.find().toArray())
     } catch (error){
         console.log(error);
@@ -65,8 +65,7 @@ exports.findByTitle = async (collection,dataObj) => {
 exports.findByActor = async (collection,dataObj) => {
     try {       
         console.log(await collection.find(dataObj).toArray())        
-         console.log(dataObj) 
-          }             
+                   }             
             catch (error){
         console.log(error);
     }
